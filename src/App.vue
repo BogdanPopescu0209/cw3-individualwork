@@ -151,4 +151,32 @@ export default {
 </script>
 
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.checkout {
+  margin-left: 220px;
+  background-color: blue;
+  color: white;
+}
+
+.search {
+  margin-top: 10px;
+  margin-left: 130px;
+}
+
+.searchBtn {
+  background-color: cornflowerblue;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+h1 {
+  text-align: center;
+}
 </style>
