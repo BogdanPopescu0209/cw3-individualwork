@@ -86,31 +86,56 @@ export default {
         }
       }
     },
-  },
-  deleteFromCart(product) {
-    for (let i = 0; i < this.cart.length; i++) {
-      if (this.cart[i].topic === product.topic) {
-        this.cart.splice(i, 1);
+    deleteFromCart(product) {
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].topic === product.topic) {
+          this.cart.splice(i, 1);
 
-        product.quantity++;
+          product.quantity++;
 
-        if (this.cart.length === 0) {
-          this.showProduct = true;
+          if (this.cart.length === 0) {
+            this.showProduct = true;
+          }
+          break;
         }
-        break;
       }
-    }
 
-    for (let i = 0; i < this.products.length; i++) {
-      if (product.topic === this.products[i].topic) {
-        let newSpace = this.products[i].space + 1;
-        this.products[i].space = newSpace;
+      for (let i = 0; i < this.products.length; i++) {
+        if (product.topic === this.products[i].topic) {
+          let newSpace = this.products[i].space + 1;
+          this.products[i].space = newSpace;
+        }
       }
-    }
+    },
+    showCheckout() {
+      this.showProduct = this.showProduct ? false : true;
+    },
   },
-  showCheckout() {
-    this.showProduct = this.showProduct ? false : true;
-  }
+  
+  watch: {
+    searchItem: async function () {
+      if (this.searchItem.length > 0) {
+        let t = this;
+        await fetch(
+          "https://lessons-online-store.herokuapp.com/search/lessons/" +
+            this.searchItem
+        ).then(function (response) {
+          response.json().then(function (json) {
+            t.products = json;
+          });
+        });
+      } else {
+        let t = this;
+        fetch(
+          "https://lessons-online-store.herokuapp.com/collection/lessons"
+        ).then(function (response) {
+          response.json().then(function (json) {
+            t.products = json;
+          });
+        });
+      }
+    },
+  },
 };
 </script>
 
