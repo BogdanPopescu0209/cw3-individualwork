@@ -38,7 +38,7 @@
         <br />
 
         <div class="row">
-               <div v-if="showProduct">
+          <div v-if="showProduct">
             <products @addProduct="addToCart" :products="products"></products>
           </div>
 
@@ -68,7 +68,25 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    addToCart(product) {
+      this.cart.push({
+        _id: product._id,
+        topic: product.topic,
+        location: product.location,
+        price: product.price,
+        quantity: product.space,
+        image: product.image,
+      });
+
+      for (let i = 0; i < this.products.length; i++) {
+        if (product.topic === this.products[i].topic) {
+          let newSpace = this.products[i].space - 1;
+          this.products[i].space = newSpace;
+        }
+      }
+    },
+  },
 };
 </script>
 
