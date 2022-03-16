@@ -87,6 +87,27 @@ export default {
       }
     },
   },
+  deleteFromCart(product) {
+    for (let i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].topic === product.topic) {
+        this.cart.splice(i, 1);
+
+        product.quantity++;
+
+        if (this.cart.length === 0) {
+          this.showProduct = true;
+        }
+        break;
+      }
+    }
+
+    for (let i = 0; i < this.products.length; i++) {
+      if (product.topic === this.products[i].topic) {
+        let newSpace = this.products[i].space + 1;
+        this.products[i].space = newSpace;
+      }
+    }
+  },
 };
 </script>
 
