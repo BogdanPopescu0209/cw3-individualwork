@@ -38,7 +38,13 @@
         <br />
 
         <div class="row">
-          
+               <div v-if="showProduct">
+            <products @addProduct="addToCart" :products="products"></products>
+          </div>
+
+          <div v-else>
+            <checkout @deleteProduct="deleteFromCart" :cart="cart"></checkout>
+          </div>
         </div>
       </div>
     </div>
