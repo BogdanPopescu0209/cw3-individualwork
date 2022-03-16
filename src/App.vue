@@ -108,6 +108,9 @@ export default {
       }
     }
   },
+  showCheckout() {
+    this.showProduct = this.showProduct ? false : true;
+  }
 };
 </script>
 
