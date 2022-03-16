@@ -111,7 +111,7 @@ export default {
       this.showProduct = this.showProduct ? false : true;
     },
   },
-  
+
   watch: {
     searchItem: async function () {
       if (this.searchItem.length > 0) {
@@ -135,6 +135,17 @@ export default {
         });
       }
     },
+  },
+
+  mounted() {
+    let t = this;
+    fetch("https://lessons-online-store.herokuapp.com/collection/lessons").then(
+      (response) => {
+        response.json().then(function (json) {
+          t.products = json;
+        });
+      }
+    );
   },
 };
 </script>
